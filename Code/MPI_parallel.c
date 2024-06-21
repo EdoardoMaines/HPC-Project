@@ -5,7 +5,7 @@
 #include <float.h>
 #include <string.h>
 
-#define ROWS 999999
+#define ROWS 100000000
 #define COLS 4
 #define K 9
 
