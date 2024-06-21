@@ -5,7 +5,7 @@
 #include <float.h>
 #include <string.h>
 
-#define ROWS 999999
+#define ROWS 100000000
 #define COLS 4
 #define K 9
 
@@ -186,7 +186,7 @@ void read_dataset(float percentage) {
 
     int partial_nr_ROWS = (int)(ROWS * percentage);
 
-    FILE* file = fopen("generated_data_k_9_1M.csv","r");
+    FILE* file = fopen("generated_data_k_9_100M.csv","r");
     
     char buffer[130];
     int row = 0;
