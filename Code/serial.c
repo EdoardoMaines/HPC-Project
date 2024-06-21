@@ -5,7 +5,7 @@
 #include <float.h>
 #include <string.h>
 
-#define ROWS 999999
+#define ROWS 100000000
 #define COLS 4
 #define K 6
 
@@ -204,62 +204,11 @@ void write_centroids (int num_perc) {
     } 
 }
 
-
-// void read_dataset(float percentage) {
-//     FILE* file = fopen("generated_data_k_3_1M.csv","r");
-//     if (file == NULL) {
-//         fprintf(stderr, "Error opening file.\n");
-//         exit(1);
-//     }
-
-//     int partial_nr_ROWS = (int)(ROWS * percentage);
-//     char buffer[130];
-//     int row = 0;
-//     int count = 0;
-
-//     // Leggiamo e processiamo le righe del file in modo parallelo con OpenMP
-//     #pragma omp parallel default(none) shared(file, partial_nr_ROWS, count, dataset) private(buffer, row)
-//     {
-//         int tid = omp_get_thread_num();
-//         int num_threads = omp_get_num_threads();
-
-//         // Calcoliamo quale riga deve essere letta da questo thread
-//         int start_row = tid * partial_nr_ROWS / num_threads;
-//         int end_row = (tid + 1) * partial_nr_ROWS / num_threads;
-
-//         // Spostiamo la posizione del file per ogni thread
-//         for (int i = 0; i < start_row; i++) {
-//             if (fgets(buffer, 130, file) == NULL) {
-//                 break;
-//             }
-//         }
-
-//         // Leggiamo il file e memorizziamo i dati
-//         for (row = start_row; row < end_row; row++) {
-//             if (fgets(buffer, 130, file) == NULL) {
-//                 break;
-//             }
-//             char *token = strtok(buffer, ",");
-//             int col = 0;
-//             while (token) {
-//                 float n = atof(token);
-//                 dataset[row][col] = n;
-//                 token = strtok(NULL, ",");
-//                 col++;
-//             }
-//             #pragma omp atomic
-//             count++;
-//         }
-//     }
-
-//     fclose(file);
-// }
-
 void read_dataset(float percentage) {
 
     int partial_nr_ROWS = (int)(ROWS * percentage);
 
-    FILE* file = fopen("generated_data_k_6_1M.csv","r");
+    FILE* file = fopen("generated_data_k_6_100M.csv","r");
     
     char buffer[130];
     int row = 0;
@@ -286,13 +235,6 @@ void read_dataset(float percentage) {
     fclose(file);
 }
 
-// double euclidean_distance(double *a, double *b) {
-//     double sum = 0;
-//     for (int i = 0; i < COLS; i++) {
-//         sum += pow(a[i] - b[i], 2);
-//     }
-//     return sqrt(sum);
-// }
 
 double euclidean_distance(int a, int b) {
     double sum = 0;
